@@ -1,0 +1,26 @@
+#ifndef GBM_GAMEPLAY_H
+#define GBM_GAMEPLAY_H
+
+#include <string>
+
+#include "core/scenes/scene.h"
+#include "game/player.h"
+#include "raylib.h"
+
+class GameplayScene : public Scene {
+ public:
+  explicit GameplayScene(SceneManager& scenes);
+
+  const char* name() const override { return "gameplay"; }
+  std::string debugState() const override;
+  std::string saveState() const override;
+  void restoreState(const std::string& state) override;
+  void update(float deltaTime) override;
+  void draw() const override;
+
+ private:
+  Camera3D camera = {};
+  Player player = Player(0.0f, 0.0f, 0.0f, 2.0f);
+};
+
+#endif  // !GBM_GAMEPLAY_H
